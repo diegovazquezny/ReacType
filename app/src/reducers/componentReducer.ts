@@ -93,7 +93,6 @@ const reducer = (state: State, action: Action) => {
     // TODO: output parent name and id to refocus canvas on parent
     let isChild: boolean = false;
     state.components.forEach(comp => {
-      console.log('comp =>', comp);
       comp.children.forEach(child => {
         if (child.type === 'Component' && child.typeId === id) {
           isChild = true;
@@ -102,6 +101,7 @@ const reducer = (state: State, action: Action) => {
         }
       });
     });
+    console.log('comps =>', state.components);
     return isChild;
   }
 
@@ -187,7 +187,7 @@ const reducer = (state: State, action: Action) => {
       }
       // if there is a childId (childId here references the direct parent of the new child) find that child and a new child to its children array
 
-
+  
       else {
         const directParent = findChild(parentComponent, childId);
         directParent.children.push(newChild);
@@ -197,8 +197,7 @@ const reducer = (state: State, action: Action) => {
         components,
         parentComponentId,
         [...state.rootComponents],
-        state.projectType,
-        state.HTMLTypes
+        state.projectType
       );
 
       const canvasFocus = {
@@ -247,8 +246,7 @@ const reducer = (state: State, action: Action) => {
         components,
         state.canvasFocus.componentId,
         [...state.rootComponents],
-        state.projectType,
-        state.HTMLTypes
+        state.projectType
       );
 
       return { ...state, components };
@@ -278,8 +276,7 @@ const reducer = (state: State, action: Action) => {
         components,
         state.canvasFocus.componentId,
         [...state.rootComponents],
-        state.projectType,
-        state.HTMLTypes
+        state.projectType
       );
 
       return { ...state, components };
@@ -309,8 +306,7 @@ const reducer = (state: State, action: Action) => {
         components,
         state.canvasFocus.componentId,
         [...state.rootComponents],
-        state.projectType,
-        state.HTMLTypes
+        state.projectType
       );
       const canvasFocus = { ...state.canvasFocus, childId: null };
       return { ...state, components, canvasFocus };
@@ -337,7 +333,7 @@ const reducer = (state: State, action: Action) => {
       // check if component is a child element of a page
       if(isChildOfPage(id)) {
         // TODO: include name of parent in alert
-        // TODO: change canvas focus to parent
+        // TODO: change canvas focus to parent  
         //dialog.showErrorBox('error','Reusable components inside of a page must be deleted from the page');
         alert('Reusable components inside of a page must be deleted from the page');
         //const canvasFocus:Object = { componentId: id, childId: null };
@@ -349,6 +345,7 @@ const reducer = (state: State, action: Action) => {
       updateIds(components);
 
       // TODO: temporary fix. should point to id directly
+      //const componentId = state.components.length; 
       const canvasFocus = { componentId: 1, childId: null };
       return {...state, components, canvasFocus};
     }
@@ -379,8 +376,7 @@ const reducer = (state: State, action: Action) => {
           components,
           component.id,
           [...state.rootComponents],
-          projectType,
-          state.HTMLTypes
+          projectType
         );
       });
 
@@ -432,16 +428,6 @@ const reducer = (state: State, action: Action) => {
       };
     }
 
-    case 'ADD ELEMENT': {
-      console.log("REDUCER HIT");
-      const HTMLTypes = [...state.HTMLTypes];
-      HTMLTypes.push(action.payload);
-      console.log("MY NEW ARRAY: ", HTMLTypes);
-      return {
-        ...state,
-        HTMLTypes
-      }
-    }
     default:
       return state;
   }
