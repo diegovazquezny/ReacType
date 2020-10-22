@@ -328,8 +328,8 @@ const reducer = (state: State, action: Action) => {
       // TODO: bug when deleting element inside page
         // can't edit component name
         // happens sometimes. not sure exactly when
-
       const id: number = state.canvasFocus.componentId;
+      console.log(id);
       // check if component is a child element of a page
       if(isChildOfPage(id)) {
         // TODO: include name of parent in alert
@@ -345,8 +345,8 @@ const reducer = (state: State, action: Action) => {
       updateIds(components);
 
       // TODO: temporary fix. should point to id directly
-      //const componentId = state.components.length; 
-      const canvasFocus = { componentId: 1, childId: null };
+      //const componentId = components.length; 
+      const canvasFocus = { componentId: id - 1, childId: null };
       return {...state, components, canvasFocus};
     }
 
