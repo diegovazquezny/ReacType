@@ -82,6 +82,9 @@ const ComponentPanel = (): JSX.Element => {
   };
 
   const handleNameSubmit = () => {
+    console.log('roots', state.rootComponents);
+    console.log('comps', state.components);
+
     let letters = /[a-zA-Z]/;
     if (!compName.charAt(0).match(letters)) {
       triggerError('letters');

@@ -38,8 +38,6 @@ const generateUnformattedCode = (
         return child;
       } else if (child.type === 'HTML Element') {
         const referencedHTML = HTMLTypes.find(elem => elem.id === child.typeId);
-        console.log("ARRAY OF HTMLS: ", HTMLTypes);
-        console.log("REF HTML: ", referencedHTML);
         child['tag'] = referencedHTML.tag;
         if (referencedHTML.tag === 'div') {
           child.children = getEnrichedChildren(child);
@@ -247,10 +245,6 @@ const generateCode = (
   projectType: string,
   HTMLTypes: HTMLType[]
 ) => {
-  // console.log('components', components);
-  // console.log('componentId', componentId);
-  // console.log('rootComponents', rootComponents);
-  // console.log('projectType', projectType);
   const code = generateUnformattedCode(
     components,
     componentId,
