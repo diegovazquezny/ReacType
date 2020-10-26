@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { select, hierarchy, tree, linkHorizontal } from "d3";
 import useResizeObserver from "./useResizeObserver";
+import ResizeObserver from "resize-observer-polyfill";
 
 function usePrevious(value) {
   const ref = useRef();
@@ -18,7 +19,21 @@ function TreeChart({ data }) {
   const textAndBorderColor = 'rgb(51, 235, 145)';
 
   const dimensions = useResizeObserver(wrapperRef);
- 
+  console.log(dimensions);
+  // const dimensions = {};
+  // const useResize = (wrapperRef) => {
+  //   const dim = { height: 0, width: 0}
+  //   const resizer = new ResizeObserver(entries => {
+  //     entries.forEach(entry => {
+  //       dimensions[height] = entry.contentRect.height;
+  //       dimensions[width] = entry.contentRect.width;
+  //       console.log(dimensions);
+  //     })
+  //   })
+  //   resizer.observe(wrapperRef.current);
+  //   return () => dim;
+  // }
+
   // we save data to see if it changed
   const previouslyRenderedData = usePrevious(data);
 
@@ -26,6 +41,9 @@ function TreeChart({ data }) {
   useEffect(() => {
     const svg = select(svgRef.current);
 
+    // console.log(useResize(wrapperRef));
+    // const d = useResize(wrapperRef);
+    // console.log('dim =>', d)
     // use dimensions from useResizeObserver,
     // but use getBoundingClientRect on initial render
     // (dimensions are null for the first render)
