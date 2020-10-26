@@ -454,8 +454,11 @@ const reducer = (state: State, action: Action) => {
     }
 
     case 'ADD ELEMENT': {
+      console.log('add element');
       const HTMLTypes = [...state.HTMLTypes];
       HTMLTypes.push(action.payload);
+      console.log(action.payload);
+      console.log('html types', HTMLTypes);
       return {
         ...state,
         HTMLTypes
