@@ -6,14 +6,14 @@ import { Component, DragItem } from '../../interfaces/Interfaces';
 import { combineStyles } from '../../helperFunctions/combineStyles';
 import renderChildren from '../../helperFunctions/renderChildren';
 
-const findNestedChild = (curr, components) => {
-  components.forEach((comp, i) => {
-    comp.children.forEach(child => {
-      if (child.name === curr.name) console.log(child.name)
-    });
-    if (comp.children.length !== 0) findNestedChild(curr, comp.children);  
-  });
-}
+// const findNestedChild = (curr, components) => {
+//   components.forEach((comp, i) => {
+//     comp.children.forEach(child => {
+//       if (child.name === curr.name) console.log(child.name)
+//     });
+//     if (comp.children.length !== 0) findNestedChild(curr, comp.children);  
+//   });
+// }
 
 function Canvas() {
   const [state, dispatch] = useContext(StateContext);
@@ -23,7 +23,7 @@ function Canvas() {
     (elem: Component) => elem.id === state.canvasFocus.componentId
   );
 
-  findNestedChild(currentComponent, state.components);
+  //findNestedChild(currentComponent, state.components);
 
   // changes focus of the canvas to a new component / child
   const changeFocus = (componentId: number, childId: number | null) => {
