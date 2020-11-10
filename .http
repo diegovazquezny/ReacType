@@ -1,0 +1,6 @@
+
+GET http://localhost:5000/github/callback
+
+###
+
+GET http://localhost:5000/github/callback?code=2423442
