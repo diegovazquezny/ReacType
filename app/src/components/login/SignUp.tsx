@@ -1,9 +1,8 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { LoginInt } from '../../interfaces/Interfaces';
 import {
   Link as RouteLink,
   withRouter,
-  useHistory,
   RouteComponentProps
 } from 'react-router-dom';
 import { newUserIsCreated } from '../../helperFunctions/auth';
@@ -12,24 +11,17 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { element } from 'prop-types';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © ReacType '}
-      {/* <Link color="inherit" href="https://reactype.io/#fullCarousel">
-        ReacType
-      </Link>{' '} */}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -55,12 +47,6 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(3, 0, 2)
   },
   root: {
-    // "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-    //   borderColor: "green"
-    // },
-    // "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-    //   borderColor: "red"
-    // },
     '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
       borderColor: '#3EC1AC'
     }
@@ -182,7 +168,6 @@ const SignUp: React.FC<LoginInt & RouteComponentProps> = props => {
       setInvalidVerifyPassword(false);
     }
 
-    // if(!invalidUsername && !invalidPassword && !invalidEmail && !invalidVerifyPassword) {
     newUserIsCreated(username, email, password).then(userCreated => {
       if (userCreated === 'Success') {
 
@@ -292,7 +277,7 @@ const SignUp: React.FC<LoginInt & RouteComponentProps> = props => {
             onClick={e => handleSignUp(e)}
           >
             Sign Up
-          </Button>+
+          </Button>
           <Grid container justify="flex-end">
             <Grid item>
               <RouteLink to={`/login`} className="nav_link">

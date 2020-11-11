@@ -67,7 +67,8 @@ const SignIn: React.FC<LoginInt & RouteComponentProps> = props => {
   const [invalidPassMsg, setInvalidPassMsg] = useState('');
   const [invalidUser, setInvalidUser] = useState(false);
   const [invalidPass, setInvalidPass] = useState(false);
-  const FBAPPID = process.env.REACT_APP_FB_APP_ID;
+
+  const FBAPPID: string = process.env.REACT_APP_FB_APP_ID;
 
   // this useEffect will check for cookies and set an item in localstorage for github Oauth session validation
   useEffect(() => {
@@ -75,7 +76,6 @@ const SignIn: React.FC<LoginInt & RouteComponentProps> = props => {
       window.api.setCookie();
       window.api.getCookie(cookie => {
         // if a cookie exists, set localstorage item with cookie data, clear interval, go back to '/' route to load app
-        console.log(cookie);
         if (cookie[0]) {
           window.localStorage.setItem('ssid', cookie[0].value);
           clearInterval(githubCookie);
@@ -157,9 +157,9 @@ const SignIn: React.FC<LoginInt & RouteComponentProps> = props => {
               })
           }
         });
-      }
+    }
   }
-  const classBtn = 'MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-submit-4 MuiButton-fullWidth';
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -202,12 +202,6 @@ const SignIn: React.FC<LoginInt & RouteComponentProps> = props => {
           helperText={invalidPassMsg}
           error={invalidPass}
         />
-        {/* **TODO** Make 'Remember Me' functional
-        <FormControlLabel
-          control={<Checkbox value="remember" color="primary" />}
-          label="Remember me"
-        /> */}
-
         <Button
           fullWidth
           variant="contained"
