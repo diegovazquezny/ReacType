@@ -450,11 +450,11 @@ ipcMain.on('github', event => {
     const matches = callbackUrl.match(/(?<=\?=).*/);
     const ssid = matches ? matches[0] : '';
     callbackUrl = callbackUrl.replace(/\?=.*/, '');
-    let redirectUrl = 'app://rse/';
-    if (isDev) {
-      redirectUrl = 'http://localhost:8080/';
-    }
-    //let redirectUrl = 'http://localhost:8080/';
+    // let redirectUrl = 'app://rse/';
+    // if (isDev) {
+    //   redirectUrl = 'http://localhost:8080/';
+    // }
+    let redirectUrl = 'http://localhost:8080/';
     if (callbackUrl === redirectUrl) {
       dialog.showMessageBox({
         type: 'info',

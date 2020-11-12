@@ -46,11 +46,12 @@ app.get(
   cookieController.setSSIDCookie,
   sessionController.startSession,
   (req, res) => {
-    if (isDev) {
-      return res.status(200).redirect(`http://localhost:8080?=${res.locals.ssid}`);
-    } else {
-      return res.status(200).redirect('app://rse');
-    }
+    return res.status(200).redirect(`http://localhost:8080?=${res.locals.ssid}`);
+    // if (isDev) {
+    //   return res.status(200).redirect(`http://localhost:8080?=${res.locals.ssid}`);
+    // } else {
+    //   return res.status(200).redirect('app://rse');
+    // }
   }
 );
 
