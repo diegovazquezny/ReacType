@@ -1,3 +1,4 @@
+require('dotenv').config();
 const {
   app,
   protocol,
@@ -24,7 +25,6 @@ const MenuBuilder = require('./menu');
 
 const path = require('path');
 // const fs = require('fs');
-require('dotenv').config();
 
 const isDev =
   process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test';
@@ -67,7 +67,8 @@ async function createWindow() {
     webPreferences: {
       zoomFactor: 0.7,
       // enable devtools when in development mode
-      devTools: isDev,
+      devTools: true,
+      //devTools: isDev,
       // crucial security feature - blocks rendering process from having access to node modules
       nodeIntegration: false,
       // web workers will not have access to node
@@ -102,11 +103,13 @@ async function createWindow() {
   });
 
   // Load app
+  win.loadURL(selfHost);
   if (isDev) {
     // load app from web-dev server
     win.loadURL(selfHost);
   } else {
     // load local file if in production
+    console.log('URL', Protocol.scheme);
     win.loadURL(`${Protocol.scheme}://rse/index-prod.html`);
   }
 
@@ -451,6 +454,7 @@ ipcMain.on('github', event => {
     if (isDev) {
       redirectUrl = 'http://localhost:8080/';
     }
+    //let redirectUrl = 'http://localhost:8080/';
     if (callbackUrl === redirectUrl) {
       dialog.showMessageBox({
         type: 'info',

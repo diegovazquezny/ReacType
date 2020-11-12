@@ -9,6 +9,7 @@ import initialState from '../context/initialState';
 import generateCode from '../helperFunctions/generateCode';
 import cloneDeep from '../helperFunctions/cloneDeep';
 import { isValueObject } from 'immutable';
+import { array } from 'prop-types';
 
 const reducer = (state: State, action: Action) => {
   // if the project type is set as Next.js, next component code should be generated
@@ -175,6 +176,8 @@ const reducer = (state: State, action: Action) => {
   const convertToJSX = arrayOfElements => {
     // if id exists in state.HTMLTypes
     for (let i = 0; i < initialState.HTMLTypes.length; i += 1) {
+      console.log(arrayOfElements);
+      console.log(initialState);
       arrayOfElements[i] = initialState.HTMLTypes[i];
     }
   };
