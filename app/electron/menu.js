@@ -6,6 +6,7 @@ const isMac = process.platform === 'darwin';
 const port = 5000;
 const Protocol = require('./protocol');
 const tutorialRoute = `http://localhost:${port}/tutorial`;
+require('dotenv').config();
 
 // Create a template for a menu and create menu using that template
 var MenuBuilder = function(mainWindow, appName) {
@@ -17,9 +18,9 @@ var MenuBuilder = function(mainWindow, appName) {
 
   const openTutorial = () => {
     const tutorial = new BrowserWindow({
-      width: 1126,
+      width: 1180,
       height: 900,
-      minWidth: 661,
+      minWidth: 666,
       title: 'Tutorial',
       webPreferences: {
         nodeIntegration: false,
@@ -32,8 +33,9 @@ var MenuBuilder = function(mainWindow, appName) {
       }
     });
     if (process.env.NODE_ENV === 'development') {
-      tutorial.loadURL(`http://localhost:8080/#/tutorial`);}
-    else if (process.env.NODE_ENV === 'production'){
+      tutorial.loadURL(`http://localhost:8080/#/tutorial`);
+    }
+    else {
       tutorial.loadURL(`${Protocol.scheme}://rse/index-prod.html#/tutorial`);
     }
     tutorial.show();
